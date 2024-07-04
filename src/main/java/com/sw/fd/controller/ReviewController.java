@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -31,19 +30,6 @@ public class ReviewController {
         reviewService.saveReview(review);
         return "redirect:/showReviews"; // 리뷰 저장 후 showReviews 페이지로 리다이렉션
     }
-
-    /*
-    @GetMapping("/showReview")
-    public String showReview(@RequestParam("rno") int rno, Model model) {
-        Review review = reviewService.getReviewByRno(rno);
-        if (review != null) {
-            model.addAttribute("review", review);
-        } else {
-            model.addAttribute("error", "리뷰를 찾을 수 없습니다.");
-        }
-        return "showReview";
-    }
-    */
 
     @GetMapping("/showReviews")
     public String showReviews(Model model) {
