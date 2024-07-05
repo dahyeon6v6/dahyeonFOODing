@@ -20,7 +20,10 @@
 <c:forEach var="review" items="${reviews}">
     <div class="review-container">
         <div class="review-item">작성 날짜: ${review.rdate}</div>
-        <div class="review-item">별점: ${review.rstar}</div>
+        <div class="review-item">별점:
+            <c:forEach begin="1" end="${review.rstar}" var="i">★</c:forEach>
+            <c:forEach begin="${review.rstar + 1}" end="5" var="i">☆</c:forEach>
+        </div>
         <div class="review-item">리뷰 내용:</div>
         <div class="review-item" style="border: 1px solid black; padding: 10px;">${review.rcomm}</div>
     </div>
