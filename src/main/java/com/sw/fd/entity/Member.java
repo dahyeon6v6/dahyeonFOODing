@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -17,10 +14,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Member {
     @Id
-    private String mid; // 기본 키로 사용될 필드
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int mno;
 
+    private String mid;
     private String mname;
     private String mpass;
+
+    // 비밀번호 확인 필드 (테이블에 저장되지 않음)
+    private transient String mpassConfirm;
+
     private int mtype;
     private String mnick;
     private String mbirth;
@@ -29,9 +32,17 @@ public class Member {
     private String maddr;
     private LocalDate mdate;
 
-
     @PrePersist
     protected void onCreate() {
         mdate = LocalDate.now();
     }
+
+    public String getMpassConfirm() {
+        return mpassConfirm;
+    }
+
+    public void setMpassConfirm(String mpassConfirm) {
+        this.mpassConfirm = mpassConfirm;
+    }
+
 }

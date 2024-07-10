@@ -17,12 +17,20 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rno;
 
-    private int mno;
-    private int sno;
+    @ManyToOne
+    @JoinColumn(name = "mno")
+    private Member member;
+
+
+    @ManyToOne
+    @JoinColumn(name = "sno")
+    private Store store;
+
     private int rstar;
     private String rcomm;
     private LocalDate rdate;
 
     @PrePersist
     protected void onCreate() { rdate = LocalDate.now(); }
+
 }
